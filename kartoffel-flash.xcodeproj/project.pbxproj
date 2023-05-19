@@ -9,17 +9,15 @@
 /* Begin PBXBuildFile section */
 		7424FAD12A163EB6009710E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7424FAD02A163EB6009710E0 /* AppDelegate.swift */; };
 		7424FAD32A163EB6009710E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7424FAD22A163EB6009710E0 /* SceneDelegate.swift */; };
-		7424FAD52A163EB6009710E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7424FAD42A163EB6009710E0 /* ViewController.swift */; };
 		7424FADA2A163EB7009710E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7424FAD92A163EB7009710E0 /* Assets.xcassets */; };
 		7424FADD2A163EB7009710E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7424FADB2A163EB7009710E0 /* LaunchScreen.storyboard */; };
 		74C8DCFB2A177D1600554389 /* AppRootFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 74C8DCFA2A177D1600554389 /* AppRootFeature */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7424FACD2A163EB6009710E0 /* kartoffel-flash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kartoffel-flash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7424FACD2A163EB6009710E0 /* Kartoffel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kartoffel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7424FAD02A163EB6009710E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7424FAD22A163EB6009710E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7424FAD42A163EB6009710E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7424FAD92A163EB7009710E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7424FADC2A163EB7009710E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7424FADE2A163EB7009710E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,7 +49,7 @@
 		7424FACE2A163EB6009710E0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7424FACD2A163EB6009710E0 /* kartoffel-flash.app */,
+				7424FACD2A163EB6009710E0 /* Kartoffel.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,7 +59,6 @@
 			children = (
 				7424FAD02A163EB6009710E0 /* AppDelegate.swift */,
 				7424FAD22A163EB6009710E0 /* SceneDelegate.swift */,
-				7424FAD42A163EB6009710E0 /* ViewController.swift */,
 				7424FAD92A163EB7009710E0 /* Assets.xcassets */,
 				7424FADB2A163EB7009710E0 /* LaunchScreen.storyboard */,
 				7424FADE2A163EB7009710E0 /* Info.plist */,
@@ -96,7 +93,7 @@
 				74C8DCFA2A177D1600554389 /* AppRootFeature */,
 			);
 			productName = "kartoffel-flash";
-			productReference = 7424FACD2A163EB6009710E0 /* kartoffel-flash.app */;
+			productReference = 7424FACD2A163EB6009710E0 /* Kartoffel.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -149,7 +146,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7424FAD52A163EB6009710E0 /* ViewController.swift in Sources */,
 				7424FAD12A163EB6009710E0 /* AppDelegate.swift in Sources */,
 				7424FAD32A163EB6009710E0 /* SceneDelegate.swift in Sources */,
 			);
@@ -303,7 +299,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "kartoffelsoft.kartoffel-flash";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Kartoffel;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -330,7 +326,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "kartoffelsoft.kartoffel-flash";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Kartoffel;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

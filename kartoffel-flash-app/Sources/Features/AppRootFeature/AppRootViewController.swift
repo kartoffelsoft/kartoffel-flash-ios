@@ -1,10 +1,13 @@
 import ComposableArchitecture
+import HomeFeature
 import UIKit
 
 public class AppRootViewController: UIViewController {
 
     private let store: StoreOf<AppRoot>
     private let viewStore: ViewStoreOf<AppRoot>
+    
+    private var contentViewController: UIViewController?
 
     public init(store: StoreOf<AppRoot>) {
         self.store = store
@@ -18,7 +21,24 @@ public class AppRootViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .cyan
+        
+        show(HomeViewController(
+            store: self.store.scope(
+                state: \.home,
+                action: AppRoot.Action.home
+            )),
+            sender: self
+        )
+    }
+    
+    public override func show(_ vc: UIViewController, sender: Any?) {
+        contentViewController?.removeFromParent()
+        contentViewController?.view.removeFromSuperview()
+
+        addChild(vc)
+        view.addSubview(vc.view)
+        
+        contentViewController = vc
     }
 
 }
