@@ -1,4 +1,5 @@
 import ComposableArchitecture
+import StyleGuide
 import UIKit
 
 public class HomeViewController: UIViewController {
@@ -18,7 +19,7 @@ public class HomeViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .cyan
+        view.backgroundColor = .theme.background500
     }
 
 }

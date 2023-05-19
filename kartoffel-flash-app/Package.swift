@@ -17,6 +17,10 @@ let package = Package(
             targets: ["AppRootFeature"]),
         
         .library(
+            name: "StyleGuide",
+            targets: ["StyleGuide"]
+        ),
+        .library(
             name: "UIKitUtils",
             targets: ["UIKitUtils"]
         )
@@ -36,11 +40,16 @@ let package = Package(
         .target(
             name: "HomeFeature",
             dependencies: [
+                "StyleGuide",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ],
             path: "./Sources/Features/HomeFeature"
         ),
         
+        .target(
+            name: "StyleGuide",
+            resources: [.process("Resources/")]
+        ),
         .target(
             name: "UIKitUtils",
             dependencies: [
