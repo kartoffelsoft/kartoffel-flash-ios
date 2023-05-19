@@ -10,20 +10,20 @@
 		7424FAD12A163EB6009710E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7424FAD02A163EB6009710E0 /* AppDelegate.swift */; };
 		7424FAD32A163EB6009710E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7424FAD22A163EB6009710E0 /* SceneDelegate.swift */; };
 		7424FAD52A163EB6009710E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7424FAD42A163EB6009710E0 /* ViewController.swift */; };
-		7424FAD82A163EB6009710E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7424FAD62A163EB6009710E0 /* Main.storyboard */; };
 		7424FADA2A163EB7009710E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7424FAD92A163EB7009710E0 /* Assets.xcassets */; };
 		7424FADD2A163EB7009710E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7424FADB2A163EB7009710E0 /* LaunchScreen.storyboard */; };
+		74C8DCFB2A177D1600554389 /* AppRootFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 74C8DCFA2A177D1600554389 /* AppRootFeature */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7424FACD2A163EB6009710E0 /* kartoffel-flashcard-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kartoffel-flashcard-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7424FACD2A163EB6009710E0 /* kartoffel-flash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kartoffel-flash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7424FAD02A163EB6009710E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7424FAD22A163EB6009710E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7424FAD42A163EB6009710E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		7424FAD72A163EB6009710E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7424FAD92A163EB7009710E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7424FADC2A163EB7009710E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7424FADE2A163EB7009710E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74C8DCF82A177AEA00554389 /* kartoffel-flash-app */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "kartoffel-flash-app"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74C8DCFB2A177D1600554389 /* AppRootFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,39 +41,47 @@
 		7424FAC42A163EB6009710E0 = {
 			isa = PBXGroup;
 			children = (
-				7424FACF2A163EB6009710E0 /* kartoffel-flashcard-ios */,
+				74C8DCF82A177AEA00554389 /* kartoffel-flash-app */,
+				7424FACF2A163EB6009710E0 /* kartoffel-flash */,
 				7424FACE2A163EB6009710E0 /* Products */,
+				74C8DCF92A177D1600554389 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		7424FACE2A163EB6009710E0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7424FACD2A163EB6009710E0 /* kartoffel-flashcard-ios.app */,
+				7424FACD2A163EB6009710E0 /* kartoffel-flash.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7424FACF2A163EB6009710E0 /* kartoffel-flashcard-ios */ = {
+		7424FACF2A163EB6009710E0 /* kartoffel-flash */ = {
 			isa = PBXGroup;
 			children = (
 				7424FAD02A163EB6009710E0 /* AppDelegate.swift */,
 				7424FAD22A163EB6009710E0 /* SceneDelegate.swift */,
 				7424FAD42A163EB6009710E0 /* ViewController.swift */,
-				7424FAD62A163EB6009710E0 /* Main.storyboard */,
 				7424FAD92A163EB7009710E0 /* Assets.xcassets */,
 				7424FADB2A163EB7009710E0 /* LaunchScreen.storyboard */,
 				7424FADE2A163EB7009710E0 /* Info.plist */,
 			);
-			path = "kartoffel-flashcard-ios";
+			path = "kartoffel-flash";
+			sourceTree = "<group>";
+		};
+		74C8DCF92A177D1600554389 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7424FACC2A163EB6009710E0 /* kartoffel-flashcard-ios */ = {
+		7424FACC2A163EB6009710E0 /* kartoffel-flash */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7424FAE12A163EB7009710E0 /* Build configuration list for PBXNativeTarget "kartoffel-flashcard-ios" */;
+			buildConfigurationList = 7424FAE12A163EB7009710E0 /* Build configuration list for PBXNativeTarget "kartoffel-flash" */;
 			buildPhases = (
 				7424FAC92A163EB6009710E0 /* Sources */,
 				7424FACA2A163EB6009710E0 /* Frameworks */,
@@ -82,9 +91,12 @@
 			);
 			dependencies = (
 			);
-			name = "kartoffel-flashcard-ios";
-			productName = "kartoffel-flashcard-ios";
-			productReference = 7424FACD2A163EB6009710E0 /* kartoffel-flashcard-ios.app */;
+			name = "kartoffel-flash";
+			packageProductDependencies = (
+				74C8DCFA2A177D1600554389 /* AppRootFeature */,
+			);
+			productName = "kartoffel-flash";
+			productReference = 7424FACD2A163EB6009710E0 /* kartoffel-flash.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -102,7 +114,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7424FAC82A163EB6009710E0 /* Build configuration list for PBXProject "kartoffel-flashcard-ios" */;
+			buildConfigurationList = 7424FAC82A163EB6009710E0 /* Build configuration list for PBXProject "kartoffel-flash" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -115,7 +127,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7424FACC2A163EB6009710E0 /* kartoffel-flashcard-ios */,
+				7424FACC2A163EB6009710E0 /* kartoffel-flash */,
 			);
 		};
 /* End PBXProject section */
@@ -127,7 +139,6 @@
 			files = (
 				7424FADD2A163EB7009710E0 /* LaunchScreen.storyboard in Resources */,
 				7424FADA2A163EB7009710E0 /* Assets.xcassets in Resources */,
-				7424FAD82A163EB6009710E0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,14 +158,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		7424FAD62A163EB6009710E0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7424FAD72A163EB6009710E0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		7424FADB2A163EB7009710E0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -289,10 +292,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5NJ6RQ9QCA;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "kartoffel-flashcard-ios/Info.plist";
+				INFOPLIST_FILE = "kartoffel-flash/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -300,7 +302,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "kartoffelsoft.kartoffel-flashcard-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "kartoffelsoft.kartoffel-flash";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -317,10 +319,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5NJ6RQ9QCA;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "kartoffel-flashcard-ios/Info.plist";
+				INFOPLIST_FILE = "kartoffel-flash/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -328,7 +329,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "kartoffelsoft.kartoffel-flashcard-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "kartoffelsoft.kartoffel-flash";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -339,7 +340,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7424FAC82A163EB6009710E0 /* Build configuration list for PBXProject "kartoffel-flashcard-ios" */ = {
+		7424FAC82A163EB6009710E0 /* Build configuration list for PBXProject "kartoffel-flash" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7424FADF2A163EB7009710E0 /* Debug */,
@@ -348,7 +349,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7424FAE12A163EB7009710E0 /* Build configuration list for PBXNativeTarget "kartoffel-flashcard-ios" */ = {
+		7424FAE12A163EB7009710E0 /* Build configuration list for PBXNativeTarget "kartoffel-flash" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7424FAE22A163EB7009710E0 /* Debug */,
@@ -358,6 +359,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		74C8DCFA2A177D1600554389 /* AppRootFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppRootFeature;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7424FAC52A163EB6009710E0 /* Project object */;
 }

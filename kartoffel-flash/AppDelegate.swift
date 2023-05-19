@@ -1,12 +1,23 @@
+import AppRootFeature
+import ComposableArchitecture
 import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    let store = Store(
+        initialState: AppRoot.State(),
+        reducer: AppRoot()
+    )
+    
+    var viewStore: ViewStore<Void, AppRoot.Action> {
+        ViewStore(self.store.stateless)
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        viewStore.send(.appRootDelegate(.didFinishLaunching))
+        
         return true
     }
 
