@@ -1,7 +1,6 @@
-import BoxFeature
 import ComposableArchitecture
 
-public struct Home: ReducerProtocol {
+public struct Box: ReducerProtocol {
     
     public struct State: Equatable {
     

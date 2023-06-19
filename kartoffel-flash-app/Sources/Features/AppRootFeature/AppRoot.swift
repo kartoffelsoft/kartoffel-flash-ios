@@ -4,14 +4,15 @@ import HomeFeature
 public struct AppRoot: ReducerProtocol {
     
     public struct State: Equatable {
-        var appRootDelegate: AppRootDelegate.State = .init()
         
+        var appRootDelegate: AppRootDelegate.State = .init()
         var home: Home.State = .init()
         
         public init() {}
     }
     
     public enum Action: Equatable {
+        
         case appRootDelegate(AppRootDelegate.Action)
         case home(Home.Action)
     }

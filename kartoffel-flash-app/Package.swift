@@ -11,19 +11,8 @@ let package = Package(
     products: [
         .library(
             name: "AppRootFeature",
-            targets: ["AppRootFeature"]),
-        .library(
-            name: "AppRootFeature",
-            targets: ["AppRootFeature"]),
-        
-        .library(
-            name: "StyleGuide",
-            targets: ["StyleGuide"]
+            targets: ["AppRootFeature"]
         ),
-        .library(
-            name: "UIKitUtils",
-            targets: ["UIKitUtils"]
-        )
     ],
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.50.0"),
@@ -38,8 +27,17 @@ let package = Package(
             path: "./Sources/Features/AppRootFeature"
         ),
         .target(
+            name: "BoxFeature",
+            dependencies: [
+                "StyleGuide",
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+            ],
+            path: "./Sources/Features/BoxFeature"
+        ),
+        .target(
             name: "HomeFeature",
             dependencies: [
+                "BoxFeature",
                 "StyleGuide",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ],

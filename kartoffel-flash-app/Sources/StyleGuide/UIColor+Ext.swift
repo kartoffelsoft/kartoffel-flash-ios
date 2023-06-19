@@ -30,6 +30,9 @@ public struct UIColorTheme {
     public let secondary500 = UIColor(
         named: "secondary-500", in: Bundle.module, compatibleWith: nil
     )!
+    public let tertiary400 = UIColor(
+        named: "tertiary-400", in: Bundle.module, compatibleWith: nil
+    )!
     public let tertiary500 = UIColor(
         named: "tertiary-500", in: Bundle.module, compatibleWith: nil
     )!

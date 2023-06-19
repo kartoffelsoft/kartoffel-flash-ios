@@ -40,5 +40,4 @@ public class AppRootViewController: UIViewController {
         
         contentViewController = vc
     }
-
 }
