@@ -15,6 +15,7 @@ let package = Package(
         ),
     ],
     dependencies: [
+        .package(url: "https://github.com/pointfreeco/swift-case-paths.git", exact: "0.14.1"),
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.50.0"),
     ],
     targets: [
@@ -39,6 +40,7 @@ let package = Package(
             dependencies: [
                 "BoxFeature",
                 "StyleGuide",
+                .product(name: "CasePaths", package: "swift-case-paths"),
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ],
             path: "./Sources/Features/HomeFeature"

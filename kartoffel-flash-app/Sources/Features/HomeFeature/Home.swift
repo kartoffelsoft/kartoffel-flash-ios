@@ -1,23 +1,36 @@
 import BoxFeature
 import ComposableArchitecture
+import Foundation
 
 public struct Home: ReducerProtocol {
     
     public struct State: Equatable {
-    
-        struct ShelfViewData: Equatable {
-            
-            let animate: Bool
-            let elements: [ShelfElementViewData]
-        }
-        
+
         var shelfViewData: ShelfViewData = .init(
             animate: false,
-            elements: [
-                .init(type: .folder, name: "Folder 1"),
-                .init(type: .folder, name: "Folder 2"),
-                .init(type: .pack, name: "Pack 1"),
-                .init(type: .pack, name: "Pack 2")
+            items: [
+                .folder(.init(
+                    name: "German",
+                    items: [
+                        .pack(.init(name: "Akkusative")),
+                        .pack(.init(name: "Dative")),
+                    ]
+                )),
+                .folder(.init(
+                    name: "Korean",
+                    items: [
+                        .pack(.init(name: "KPop")),
+                        .pack(.init(name: "Movies")),
+                    ]
+                )),
+                .folder(.init(
+                    name: "English",
+                    items: [
+                        .pack(.init(name: "Numbers")),
+                        .pack(.init(name: "Idioms")),
+                    ]
+                )),
+                .pack(.init(name: "Numbers")),
             ]
         )
         
@@ -26,6 +39,7 @@ public struct Home: ReducerProtocol {
     
     public enum Action: Equatable {
         case initialize
+        case toggleExpansion(UUID)
     }
 
     public init() {}
@@ -34,6 +48,22 @@ public struct Home: ReducerProtocol {
         Reduce { state, action in
             switch action {
             case .initialize:
+                return .none
+            case let .toggleExpansion(id):
+                state.shelfViewData = ShelfViewData(
+                    animate: state.shelfViewData.animate,
+                    items: state.shelfViewData.items.map({ item in
+                        switch item {
+                        case let .folder(viewData):
+                            if viewData.id == id {
+                                return .folder(viewData.withToggleExpansion())
+                            }
+                            return item
+                        case .pack:
+                            return item
+                        }
+                    })
+                )
                 return .none
             }
         }

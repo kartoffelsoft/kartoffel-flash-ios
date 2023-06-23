@@ -1,4 +1,5 @@
 import BoxFeature
+import CasePaths
 import Combine
 import ComposableArchitecture
 import StyleGuide
@@ -12,7 +13,7 @@ public class HomeViewController: UIViewController {
     
     
     private let collectionView = HomeCollectionView()
-    private var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, ShelfItemViewData>!
     
     private let playButton = {
         let button = UIButton()
@@ -55,35 +56,68 @@ public class HomeViewController: UIViewController {
     }
     
     private func setupDatasource() {
-        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, ShelfElementViewData> { cell, indexPath, data in
+        let folderCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, FolderViewData> {
+            cell, indexPath, data in
             var content = cell.defaultContentConfiguration()
             content.text = data.name
-
             content.textProperties.font = .theme.subhead1
             content.textProperties.color = .theme.primary500
             content.directionalLayoutMargins = .init(top: 4, leading: 0, bottom: 4, trailing: 0)
-
+            
+            cell.contentConfiguration = content
+            cell.backgroundConfiguration?.backgroundColor = .theme.background500
+            
+            cell.accessories = [
+                .outlineDisclosure(
+                    options: UICellAccessory.OutlineDisclosureOptions(style: .header)
+//                    actionHandler: {
+//                        print("@: ", indexPath)
+//                        guard let item = self.dataSource.itemIdentifier(for: indexPath),
+//                              let viewData = (/ShelfItemViewData.folder).extract(from: item)
+//                        else { return }
+//
+//                        self.viewStore.send(.toggleExpansion(viewData.id))
+//                        print("@: ", item)
+//                    }
+                )
+            ]
+        }
+        
+        let packCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, PackViewData> {
+            cell, indexPath, data in
+            var content = cell.defaultContentConfiguration()
+            content.text = data.name
+            content.textProperties.font = .theme.subhead1
+            content.textProperties.color = .theme.primary500
+            content.directionalLayoutMargins = .init(top: 4, leading: 0, bottom: 4, trailing: 0)
             
             cell.contentConfiguration = content
             cell.backgroundConfiguration?.backgroundColor = .theme.background500
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>(
+        dataSource = UICollectionViewDiffableDataSource<Section, ShelfItemViewData>(
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, data in
-                switch(Section(rawValue: indexPath.section)) {
-                case .shelf:
+                switch data {
+                case let .folder(folder):
                     return collectionView.dequeueConfiguredReusableCell(
-                        using: cellRegistration,
+                        using: folderCellRegistration,
                         for: indexPath,
-                        item: data as? ShelfElementViewData
+                        item: folder
                     )
-                case .none:
-                    break
+                case let .pack(pack):
+                    return collectionView.dequeueConfiguredReusableCell(
+                        using: packCellRegistration,
+                        for: indexPath,
+                        item: pack
+                    )
                 }
-                return nil
             }
         )
+        
+        dataSource.sectionSnapshotHandlers.willExpandItem = { item in
+            print("###### ", item)
+        }
     }
     
     private func setupConstraints() {
@@ -108,10 +142,36 @@ public class HomeViewController: UIViewController {
     
     private func setupBindings() {
         self.viewStore.publisher.shelfViewData.sink { [weak self] data in
-            var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
-            snapshot.appendSections(Section.allCases)
-            snapshot.appendItems(data.elements, toSection: .shelf)
-            self?.dataSource.apply(snapshot, animatingDifferences: data.animate)
+            var snapshot = NSDiffableDataSourceSnapshot<Section, ShelfItemViewData>()
+            snapshot.appendSections([.shelf])
+            
+//            snapshot.appendItems(data.elements, toSection: .shelf)
+//            self?.dataSource.apply(snapshot, animatingDifferences: data.animate)
+            
+            var sectionSnapshot = NSDiffableDataSourceSectionSnapshot<ShelfItemViewData>()
+            
+            for item in data.items {
+                
+                switch(item) {
+                case let .folder(viewData):
+                    sectionSnapshot.append([item])
+                    sectionSnapshot.append(viewData.items, to: item)
+                    print("# IsExpanded", sectionSnapshot.isExpanded(item))
+                    if viewData.isExpanded {
+                        sectionSnapshot.expand([item])
+                    } else {
+                        sectionSnapshot.collapse([item])
+                    }
+//                    sectionSnapshot.expand([shelfElementViewData])
+//                    self?.dataSource.apply(sectionSnapshot, to: .shelf, animatingDifferences: true)
+                case let .pack(viewData):
+                    sectionSnapshot.append([item])
+                }
+                
+//                dataSource.reorderingHandlers
+                
+                self?.dataSource.apply(sectionSnapshot, to: .shelf, animatingDifferences: false)
+            }
         }
         .store(in: &self.cancellables)
     }
@@ -129,6 +189,12 @@ extension HomeViewController: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch(Section(rawValue: indexPath.section)) {
         case .shelf:
+            guard let item = dataSource.itemIdentifier(for: indexPath) else {
+                return
+            }
+            
+            print("# Tap: ", indexPath)
+            print("# item: ", item)
             break
             
         case .none:
@@ -140,8 +206,19 @@ extension HomeViewController: UICollectionViewDelegate {
 extension HomeViewController: UICollectionViewDragDelegate {
     
     public func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        let item = self.viewStore.shelfViewData.elements[indexPath.row]
-        let itemProvider = NSItemProvider(object: item.id.uuidString as NSString)
+//        let item = self.viewStore.shelfViewData.elements[indexPath.row]
+        guard let item = dataSource.itemIdentifier(for: indexPath) else {
+            return []
+        }
+        
+        let id: String
+        switch item {
+        case let .folder(folder):
+            id = folder.id.uuidString
+        case let .pack(pack):
+            id = pack.id.uuidString
+        }
+        let itemProvider = NSItemProvider(object: id as NSString)
         let dragItem = UIDragItem(itemProvider: itemProvider)
         dragItem.localObject = item
         return [dragItem]
@@ -150,26 +227,44 @@ extension HomeViewController: UICollectionViewDragDelegate {
 
 extension HomeViewController: UICollectionViewDropDelegate {
     
-    
     public func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
-        if collectionView.hasActiveDrag {
+        guard let indexPath = destinationIndexPath,
+              let item =  dataSource.itemIdentifier(for: indexPath),
+              collectionView.hasActiveDrag
+        else {
+            return UICollectionViewDropProposal(operation: .forbidden)
+        }
+        
+        print("#: ", session.items[0].localObject)
+        switch item {
+        case .folder:
+            print("# It's a folder")
+            return UICollectionViewDropProposal(operation: .move, intent: .insertIntoDestinationIndexPath)
+        case .pack:
+            print("# It's a pack")
             return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
         }
-        return UICollectionViewDropProposal(operation: .forbidden)
     }
     
     public func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
-        var destinationIndexPath: IndexPath
-        if let indexPath = coordinator.destinationIndexPath {
-            destinationIndexPath = indexPath
-        } else {
-            let row = collectionView.numberOfItems(inSection: 0)
-            destinationIndexPath = IndexPath(item: row - 1, section: 0)
+        print("# performDrop: ", coordinator.destinationIndexPath)
+        
+        guard let indexPath = coordinator.destinationIndexPath,
+              let item =  dataSource.itemIdentifier(for: indexPath)
+        else { return }
+        
+        switch item {
+        case let .folder(viewData):
+            print("# It's a folder: ", viewData.name)
+        case let .pack(viewData):
+            print("# It's a pack: ", viewData.name)
         }
+        
         
         if coordinator.proposal.operation == .move {
             print("# Done")
         }
         
+        print("###---:", coordinator.proposal.operation)
     }
 }
